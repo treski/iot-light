@@ -1,5 +1,6 @@
 // Express HTTP server
 require('dotenv').config()
+const cors = require('cors')
 const express = require("express"),
   expressPort = 80
   app = express(),
@@ -8,7 +9,7 @@ const express = require("express"),
   // Aedes MQTT server
   aedes = require('aedes')(),
   server = require('net').createServer(aedes.handle),
-  aedesPort = process.env.AEDES_PORT,
+  aedesPort = 1883,
   // MQTT client
   mqtt = require('mqtt'),
   client = mqtt.connect('mqtt://localhost:1883'),
@@ -18,17 +19,11 @@ const express = require("express"),
 
 // middleware
 app.use(express.json());
+app.options('*', cors())
 
 app.use("/", routes);
 
 routes.disable("etag");
-
-routes.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Headers", "*");
-  res.setHeader("Access-Control-Allow-Methods", "GET,POST,DELETE");
-  next();
-});
 
 app.listen(expressPort, () => {
   console.log(`HTTP server listening on port: ${expressPort}`)
