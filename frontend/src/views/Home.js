@@ -50,6 +50,10 @@ export const Home = () => {
   const [id, setId] = useState();
 
   const buttonClicked = async (value) => {
+    if (!id) {
+        alert('You must pass a light ID and it must be a number.')
+        return
+    }
     await apiCall({
       endpoint: "toggle-light/",
       method: "post",
@@ -95,6 +99,7 @@ export const Home = () => {
               },
               inputMode: "numeric",
             }}
+            type="number"
         />
         <Box>
           <Button
@@ -103,15 +108,20 @@ export const Home = () => {
             variant="contained"
             className={classes.button}
             onClick={() => buttonClicked(true)}
+            style={{
+                backgroundColor: '#66cc91'
+            }}
           >
             Enable light
           </Button>
           <Button
-            color="primary"
             size="large"
             variant="contained"
             className={classes.button}
             onClick={() => buttonClicked(false)}
+            style={{
+                backgroundColor: '#ff6961'
+            }}
           >
             Disable light
           </Button>
