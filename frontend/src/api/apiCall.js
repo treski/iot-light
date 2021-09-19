@@ -2,7 +2,7 @@ import axios from "axios";
 
 const apiCall = (config) => {
   const {
-    baseUrl = "http://localhost:8080/",
+    baseUrl = "http://localhost:81/api",
     endpoint,
     method = "get",
     params,

@@ -1,7 +1,7 @@
 // Express HTTP server
 require('dotenv').config()
 const express = require("express"),
-  expressPort = process.env.EXPRESS_PORT
+  expressPort = 80
   app = express(),
   routes = express(),
   bodyParser = require("body-parser"),

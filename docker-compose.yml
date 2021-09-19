@@ -1,17 +1,31 @@
-version: "1"
+version: "3"
 services:
-  react-app:
+  frontend:
+    restart: unless-stopped
+    build:
+      dockerfile: Dockerfile
+      context: ./frontend
     image: app-ui
-    stdin_open: true
-    ports:
-      - "3000:3000"
     networks:
       - iot-light-app
-  api-server:
+  backend:
+    restart: unless-stopped
+    build:
+      dockerfile: Dockerfile
+      context: ./backend
     image: app-api
+    networks:
+      - iot-light-app
     ports:
-      - "8080:8080"
       - "1883:1883"
+  nginx:
+    restart: unless-stopped
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    image: app-nginx
+    ports:
+      - "81:80"
     networks:
       - iot-light-app
 networks:
