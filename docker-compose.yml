@@ -1,0 +1,19 @@
+version: "1"
+services:
+  react-app:
+    image: app-ui
+    stdin_open: true
+    ports:
+      - "3000:3000"
+    networks:
+      - iot-light-app
+  api-server:
+    image: app-api
+    ports:
+      - "8080:8080"
+      - "1883:1883"
+    networks:
+      - iot-light-app
+networks:
+  iot-light-app:
+    driver: bridge
