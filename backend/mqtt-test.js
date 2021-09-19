@@ -1,5 +1,5 @@
 const mqtt = require('mqtt'),
-  mqttServer = 'mqtt://localhost:1883',
+  mqttServer = 'mqtt://52.201.245.140:1883',
   lightId =  123,
   mqttTopic = `light/${lightId}`,
   client  = mqtt.connect(mqttServer)
