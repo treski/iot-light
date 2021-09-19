@@ -63,7 +63,7 @@ export const Home = () => {
       },
     })
       .then((result) => {
-        console.log(`Light: ${id} - ENABLED`)
+        console.log(`${value ? 'ENABLING' : 'DISABLING'} light: ${id}`)
       })
       .catch((err) => {
         alert(`An error occured: ${err}`)
@@ -77,7 +77,7 @@ export const Home = () => {
           Light Controller
         </Typography>
         <Typography variant="h2" className={classes.subtitleText}>
-            Enter the light ID and use the buttons<br />below to toggle the light.
+            Enter the light ID and use the buttons below to toggle the light.
         </Typography>
         <TextField 
             id="outlined-basic" 
